@@ -5,10 +5,9 @@ import java.util.TreeMap;
 public class RomanNumerals {
     /*
     Cree una clase RomanNumerals que pueda convertir un número romano en un valor entero, o un entero a números romanos
-
      */
-    private TreeMap<Integer, String> romanMap = new TreeMap<>();
-    private TreeMap<String, Integer> intMap = new TreeMap<>();
+    private final TreeMap<Integer, String> romanMap = new TreeMap<>();
+    private final TreeMap<String, Integer> arabicMap = new TreeMap<>();
     private int arabicValue;
     private String romanValue;
 
@@ -29,19 +28,19 @@ public class RomanNumerals {
         romanMap.put(4, "IV");
         romanMap.put(1, "I");
 
-        intMap.put("M", 1000);
-        intMap.put("CM", 900);
-        intMap.put("D", 500);
-        intMap.put("CD", 400);
-        intMap.put("C", 100);
-        intMap.put("XC", 90);
-        intMap.put("L", 50);
-        intMap.put("XL", 40);
-        intMap.put("X", 10);
-        intMap.put("IX", 9);
-        intMap.put("V", 5);
-        intMap.put("IV", 4);
-        intMap.put("I", 1);
+        arabicMap.put("M", 1000);
+        arabicMap.put("CM", 900);
+        arabicMap.put("D", 500);
+        arabicMap.put("CD", 400);
+        arabicMap.put("C", 100);
+        arabicMap.put("XC", 90);
+        arabicMap.put("L", 50);
+        arabicMap.put("XL", 40);
+        arabicMap.put("X", 10);
+        arabicMap.put("IX", 9);
+        arabicMap.put("V", 5);
+        arabicMap.put("IV", 4);
+        arabicMap.put("I", 1);
     }
 
     public String toRoman(int number) {
@@ -50,33 +49,33 @@ public class RomanNumerals {
         return romanMap.get(floorKey) + toRoman(number - floorKey);
     }
 
-    public int toArabic(String s) {
-        romanValue = s;
+    public int toArabic(String roman) {
+        romanValue = roman;
         for (int i = 0; i < romanValue.length(); i++) {
             int symbol1 = getIntegerValue(romanValue, i);
-            i = getNexValue(i, symbol1);
+            i = getNextIncrement(i, symbol1);
         }
         return arabicValue;
     }
 
-    private int getNexValue(int i, int symbol1) {
+    private int getNextIncrement(int i, int symbol1) {
         if (i + 1 < romanValue.length()) {
             int symbol2 = getIntegerValue(romanValue, i + 1);
-            i = compareValues(i, symbol1, symbol2);
+            i += compareValues(symbol1, symbol2);
         } else arabicValue += symbol1;
         return i;
     }
 
-    private int compareValues(int i, int s1, int s2) {
+    private int compareValues(int s1, int s2) {
         if (s1 >= s2) arabicValue += s1;
         else {
             arabicValue += s2 - s1;
-            i++;
+            return 1;
         }
-        return i;
+        return 0;
     }
 
     private Integer getIntegerValue(String romanNumber, int i) {
-        return intMap.get(String.valueOf(romanNumber.charAt(i)));
+        return arabicMap.get(String.valueOf(romanNumber.charAt(i)));
     }
 }
