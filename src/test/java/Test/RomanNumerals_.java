@@ -1,7 +1,6 @@
 package Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
 import model.RomanNumerals;
 import org.junit.Before;
 import org.junit.Test;

@@ -3,9 +3,6 @@ package model;
 import java.util.TreeMap;
 
 public class RomanNumerals {
-    /*
-    Cree una clase RomanNumerals que pueda convertir un número romano en un valor entero, o un entero a números romanos
-     */
     private final TreeMap<Integer, String> romanMap = new TreeMap<>();
     private final TreeMap<String, Integer> arabicMap = new TreeMap<>();
     private int arabicValue;
