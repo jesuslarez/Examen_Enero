@@ -1,6 +1,5 @@
 package Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import model.RomanNumerals;
 import org.junit.Before;
@@ -11,6 +10,7 @@ public class RomanNumerals_ {
     private int number1;
     private String roman2;
     private int number2;
+    private String roman3;
     private RomanNumerals romanNumerals;
     @Before
     public void setUp() {
@@ -19,11 +19,12 @@ public class RomanNumerals_ {
         number1 = 10;
         roman2 = "XX";
         number2= 20;
+        roman3 = "MDCLXVI";
     }
 
     @Test
     public void is_X_equals_to_ten() {
-        assertThat(romanNumerals.toInt(roman1)).isEqualTo(10);
+        assertThat(romanNumerals.toArabic(roman1)).isEqualTo(10);
     }
     @Test
     public void is_ten_equals_to_X() {
@@ -31,11 +32,15 @@ public class RomanNumerals_ {
     }
     @Test
     public void is_XX_equals_to_twenty() {
-        assertThat(romanNumerals.toInt(roman2)).isEqualTo(20);
+        assertThat(romanNumerals.toArabic(roman2)).isEqualTo(20);
     }
     @Test
     public void is_twenty_equals_to_XX() {
         assertThat(romanNumerals.toRoman(number2)).isEqualTo("XX");
+    }
+    @Test
+    public void is_MDCLXVI_equals_to_1666() {
+        assertThat(romanNumerals.toArabic(roman3)).isEqualTo(1666);
     }
 
 }

@@ -40,7 +40,7 @@ public class RomanNumerals {
         intMap.put("I", 1);
     }
 
-    public int toInt(String romanNumber) {
+    public int toArabic(String romanNumber) {
         int result = 0;
         for (int i = 0; i < romanNumber.length(); i++) {
             int s1 = getIntegerValue(romanNumber, i);
